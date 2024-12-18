@@ -59,9 +59,13 @@
     }
 
     UIViewController *presentedViewController = RCTPresentedViewController();
-    [[PHPhotoLibrary sharedPhotoLibrary] presentLimitedLibraryPickerFromViewController:presentedViewController];
-
-    resolve(@(true));
+    if(@available(iOS 15, *)){
+      [[PHPhotoLibrary sharedPhotoLibrary] presentLimitedLibraryPickerFromViewController:presentedViewController completionHandler:resolve];
+    }
+    else{
+      [[PHPhotoLibrary sharedPhotoLibrary] presentLimitedLibraryPickerFromViewController:presentedViewController];
+      resolve(@(true));
+    }
   } else {
     reject(@"cannot_open_limited_picker", @"Only available on iOS 14 or higher", nil);
   }
