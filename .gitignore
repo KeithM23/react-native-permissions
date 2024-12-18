@@ -58,9 +58,6 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 
-# Bob
-dist/
-
 # Ruby / CocoaPods
 example/ios/Pods/
 example/vendor/bundle/
